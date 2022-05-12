@@ -18,10 +18,22 @@ yarn start
 
 Le site est alors accessible sur http://localhost:3000.
 
+## Lancer en développement
+
+```bash
+yarn
+yarn dev
+```
 ## Tests
 
 ```bash
 yarn test
+```
+
+ou bien pour lancer ESLint, le compilateur TS et les tests :
+
+```bash
+yarn check-all
 ```
 
 

@@ -408,7 +408,7 @@ export default function SearchPage() {
   function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault()
 
-    router.replace({ pathname: "/recherche", query: search })
+    router.replace({ pathname: "/consulter-index/recherche", query: search })
   }
 
   function handleChange(event: React.SyntheticEvent) {

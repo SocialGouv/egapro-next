@@ -1,10 +1,11 @@
 import React from "react"
 import NextLink from "next/link"
 import { Box, Container, Link, Flex, Text, ListItem, List, HStack, Button, useColorMode } from "@chakra-ui/react"
+import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 
 import Logo from "@/components/ds/Logo"
-import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import { isOpenFeature } from "@/utils/feature"
+import MenuProfile from "@/components/ds/MenuProfile"
 
 function Header() {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -63,6 +64,10 @@ function Header() {
               L'outil de calcul et de déclaration de votre index égalité professionnelle Femmes-Hommes
             </Text>
           </Box>
+          <Box ml="auto">
+            <MenuProfile />
+          </Box>
+
           {isOpenFeature(process.env.NEXT_PUBLIC_FEATURE_DARK_MODE) && (
             <Box ml="auto">
               <Button aria-label="Changer le mode de couleur" onClick={toggleColorMode}>
