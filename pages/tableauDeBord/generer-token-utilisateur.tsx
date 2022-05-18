@@ -25,7 +25,10 @@ import { generateImpersonateToken } from "@/models/token"
 const URL_SIMU = "/nouvelle-simulation"
 const URL_DECLA = "/declaration/"
 
-const getOrigin = window?.location?.origin || ""
+let getOrigin = ""
+if (typeof window !== "undefined") {
+  getOrigin = window?.location?.origin
+}
 
 const buildUrl = (token: string, front: "simu" | "decla") =>
   `${getOrigin}${front === "simu" ? URL_SIMU : URL_DECLA}?token=${token}`
