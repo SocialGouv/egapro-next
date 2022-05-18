@@ -1,14 +1,17 @@
-import React, { ReactElement } from "react"
-import { Flex, FormControl, FormLabel, Text, Input } from "@chakra-ui/react"
+import React from "react"
+import { Flex, Text } from "@chakra-ui/react"
+
+import type { EgaProPage } from "@/types/pages"
 
 import { useUser } from "@/contexts/auth"
 import InfoEntreprise from "@/components/InfoEntreprise"
 import UtilisateursEntreprise from "@/components/UtilisateursEntreprise"
 import { SinglePageLayout } from "@/components/ds/SinglePageLayout"
+import Form from "@/components/Form"
+import { SirenSchema } from "@/validations/siren"
+import LabeledTextField from "@/components/LabeledTextField"
 
-const title = "Gérer les utilisateurs"
-
-export default function GererUtilisateursPage() {
+const GererUtilisateursPage: EgaProPage = () => {
   const { staff } = useUser()
 
   const [siren, setSiren] = React.useState("")
@@ -19,34 +22,32 @@ export default function GererUtilisateursPage() {
         <Text>Vous n'êtes pas membre du staff.</Text>
       ) : (
         <>
-          <FormControl id="siren">
-            <FormLabel>SIREN</FormLabel>
-            <Input
-              value={siren}
-              onChange={(event) => {
-                const value = event.target?.value
-                setSiren(value ? value.replace(/\s/g, "") : value)
-              }}
-              placeholder="Saisissez le SIREN de l'entreprise"
-            />
-          </FormControl>
+          <Form
+            schema={SirenSchema}
+            onSubmit={async ({ siren }) => {
+              if (siren?.length === 9) {
+                setSiren(siren ? siren.replace(/\s/g, "") : siren)
+              }
+            }}
+            submitText="Envoyer"
+          >
+            <LabeledTextField name="siren" label="SIREN" placeholder="Saisissez le SIREN de l'entreprise" />
+          </Form>
 
-          {siren?.length === 9 && (
-            <Flex mt="6" direction="column">
-              <InfoEntreprise siren={siren} />
-              <UtilisateursEntreprise siren={siren} />
-            </Flex>
-          )}
+          <Flex mt="6" direction="column">
+            <InfoEntreprise siren={siren} />
+            <UtilisateursEntreprise siren={siren} />
+          </Flex>
         </>
       )}
     </>
   )
 }
 
-GererUtilisateursPage.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <SinglePageLayout maxW="container.md" title={title}>
-      {page}
-    </SinglePageLayout>
-  )
-}
+GererUtilisateursPage.getLayout = (page) => (
+  <SinglePageLayout maxW="container.md" title="Gérer les utilisateurs">
+    {page}
+  </SinglePageLayout>
+)
+
+export default GererUtilisateursPage

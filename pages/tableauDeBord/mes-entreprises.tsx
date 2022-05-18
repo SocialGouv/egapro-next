@@ -6,8 +6,6 @@ import InfoEntreprise from "@/components/InfoEntreprise"
 import UtilisateursEntreprise from "@/components/UtilisateursEntreprise"
 import { SinglePageLayout } from "@/components/ds/SinglePageLayout"
 
-const title = "Mes entreprises"
-
 export default function MesEntreprises() {
   const { ownership: sirens } = useUser()
   const orderedSirens = sirens.sort()
@@ -52,7 +50,7 @@ export default function MesEntreprises() {
 
 MesEntreprises.getLayout = function getLayout(page: ReactElement) {
   return (
-    <SinglePageLayout maxW="container.md" title={title}>
+    <SinglePageLayout maxW="container.md" title="Mes entreprises">
       {page}
     </SinglePageLayout>
   )

@@ -76,7 +76,7 @@ export function Form<S extends z.ZodType<any, any>>({
         {formError && (
           <Alert status="error">
             <AlertIcon />
-            <AlertDescription> {formError}</AlertDescription>
+            <AlertDescription>{formError}</AlertDescription>
           </Alert>
         )}
         {success && successText && (

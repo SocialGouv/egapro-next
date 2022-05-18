@@ -17,6 +17,8 @@ import {
 import * as z from "zod"
 import { LinkIcon } from "@chakra-ui/icons"
 
+import type { EgaProPage } from "@/types/pages"
+
 import { useUser } from "@/contexts/auth"
 import { SinglePageLayout } from "@/components/ds/SinglePageLayout"
 import FormSubmit from "@/components/ds/FormSubmit"
@@ -39,9 +41,7 @@ type Status =
   | { type: "success"; token: string }
   | { type: "error"; error: string }
 
-const title = "Générer le token pour un utilisateur"
-
-export default function GenererTokenUtilisateurPage() {
+const GenererTokenUtilisateurPage: EgaProPage = () => {
   const { staff } = useUser()
 
   const [email, setEmail] = React.useState("")
@@ -161,8 +161,10 @@ export default function GenererTokenUtilisateurPage() {
 
 GenererTokenUtilisateurPage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <SinglePageLayout maxW="container.md" title={title}>
+    <SinglePageLayout maxW="container.md" title="Générer le token pour un utilisateur">
       {page}
     </SinglePageLayout>
   )
 }
+
+export default GenererTokenUtilisateurPage

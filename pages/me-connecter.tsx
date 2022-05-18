@@ -13,8 +13,6 @@ import { sendValidationEmail } from "@/models/email"
 import { useToastMessage } from "@/utils/toast"
 import { EmailSchema } from "@/validations/email"
 
-const title = "Accéder à mes entreprises et déclarations transmises"
-
 const MirePage: EgaProPage = () => {
   const router = useRouter()
   const { toastSuccess } = useToastMessage({})
@@ -88,7 +86,7 @@ const MirePage: EgaProPage = () => {
 }
 
 MirePage.getLayout = (page) => (
-  <SinglePageLayout maxW="container.md" title={title}>
+  <SinglePageLayout maxW="container.md" title="Accéder à mes entreprises et déclarations transmises">
     {page}
   </SinglePageLayout>
 )

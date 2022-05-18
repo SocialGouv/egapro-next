@@ -4,8 +4,6 @@ import { Avatar, Badge, Box, HStack, Text, VStack } from "@chakra-ui/react"
 import { useUser } from "@/contexts/auth"
 import { SinglePageLayout } from "@/components/ds/SinglePageLayout"
 
-const title = "Mon profil"
-
 export default function MonProfil() {
   const { email, staff } = useUser()
 
@@ -35,7 +33,7 @@ export default function MonProfil() {
 
 MonProfil.getLayout = function getLayout(page: ReactElement) {
   return (
-    <SinglePageLayout maxW="container.md" title={title}>
+    <SinglePageLayout maxW="container.md" title="Mon profil">
       {page}
     </SinglePageLayout>
   )
