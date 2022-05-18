@@ -12,10 +12,6 @@ export default function GererUtilisateursPage() {
   const { staff } = useUser()
 
   const [siren, setSiren] = React.useState("")
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target?.value
-    setSiren(value ? value.replace(/\s/g, "") : value)
-  }
 
   return (
     <>
@@ -25,7 +21,14 @@ export default function GererUtilisateursPage() {
         <>
           <FormControl id="siren">
             <FormLabel>SIREN</FormLabel>
-            <Input value={siren} onChange={handleChange} placeholder="Saisissez le SIREN de l'entreprise" />
+            <Input
+              value={siren}
+              onChange={(event) => {
+                const value = event.target?.value
+                setSiren(value ? value.replace(/\s/g, "") : value)
+              }}
+              placeholder="Saisissez le SIREN de l'entreprise"
+            />
           </FormControl>
 
           {siren?.length === 9 && (

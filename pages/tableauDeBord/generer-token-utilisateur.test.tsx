@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event"
 
 import * as mockContext from "@/contexts/auth"
 import * as mockApi from "@/models/token"
-import GenererTokenUtilisateurPage from "./GenererTokenUtilisateurPage"
+import GenererTokenUtilisateurPage from "./generer-token-utilisateur"
 
 afterAll(() => {
   jest.restoreAllMocks()

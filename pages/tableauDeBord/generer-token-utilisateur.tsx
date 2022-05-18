@@ -22,8 +22,6 @@ import { SinglePageLayout } from "@/components/ds/SinglePageLayout"
 import FormSubmit from "@/components/ds/FormSubmit"
 import { generateImpersonateToken } from "@/models/token"
 
-const title = "Générer le token pour un utilisateur"
-
 const URL_SIMU = "/nouvelle-simulation"
 const URL_DECLA = "/declaration/"
 
@@ -37,6 +35,8 @@ type Status =
   | { type: "loading" }
   | { type: "success"; token: string }
   | { type: "error"; error: string }
+
+const title = "Générer le token pour un utilisateur"
 
 export default function GenererTokenUtilisateurPage() {
   const { staff } = useUser()
@@ -52,14 +52,6 @@ export default function GenererTokenUtilisateurPage() {
   const { hasCopied: hasCopiedDecla, onCopy: onCopyDecla } = useClipboard(linkDecla)
 
   const schemaForm = z.string().email()
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const email = event.target?.value?.trim() || ""
-    if (!email) setStatus({ type: "idle" })
-
-    setEmail(email)
-    setError("")
-  }
 
   return (
     <>
@@ -102,7 +94,17 @@ export default function GenererTokenUtilisateurPage() {
             <HStack id="hstack" alignItems="baseline">
               <FormControl id="email" flex="1" isInvalid={Boolean(error)}>
                 <FormLabel htmlFor="email">Email</FormLabel>
-                <Input value={email} onChange={handleChange} placeholder="Saisissez l'email d'un utilisateur" />
+                <Input
+                  value={email}
+                  onChange={(event) => {
+                    const email = event.target?.value?.trim() || ""
+                    if (!email) setStatus({ type: "idle" })
+
+                    setEmail(email)
+                    setError("")
+                  }}
+                  placeholder="Saisissez l'email d'un utilisateur"
+                />
                 <FormErrorMessage>L'email est incorrect</FormErrorMessage>
               </FormControl>
 
