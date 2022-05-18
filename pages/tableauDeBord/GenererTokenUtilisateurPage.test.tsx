@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
 import userEvent from "@testing-library/user-event"
 
-import * as mockContext from "contexts/auth"
+import * as mockContext from "@/contexts/auth"
 import * as mockApi from "@/models/token"
 import GenererTokenUtilisateurPage from "./GenererTokenUtilisateurPage"
 

@@ -17,7 +17,7 @@ import {
 import * as z from "zod"
 import { LinkIcon } from "@chakra-ui/icons"
 
-import { useUser } from "contexts/auth"
+import { useUser } from "@/contexts/auth"
 import { SinglePageLayout } from "@/components/ds/SinglePageLayout"
 import FormSubmit from "@/components/ds/FormSubmit"
 import { generateImpersonateToken } from "@/models/token"

@@ -12,7 +12,7 @@ import Modal from "@/components/ds/Modal"
 import { useOwnersOfSiren } from "@/models/useOwnersOfSiren"
 import { fetcher } from "@/utils/fetcher"
 import { useSoloToastMessage, useToastMessage } from "@/utils/toast"
-import { EmailSchema } from "validations/email"
+import { EmailSchema } from "@/validations/email"
 
 function UtilisateurItem({
   owner,

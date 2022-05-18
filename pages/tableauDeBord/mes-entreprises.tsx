@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react"
 import { Select, Flex, FormControl, FormLabel, Text } from "@chakra-ui/react"
 
-import { useUser } from "contexts/auth"
+import { useUser } from "@/contexts/auth"
 import InfoEntreprise from "@/components/InfoEntreprise"
 import UtilisateursEntreprise from "@/components/UtilisateursEntreprise"
 import { SinglePageLayout } from "@/components/ds/SinglePageLayout"

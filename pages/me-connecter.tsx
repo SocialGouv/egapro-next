@@ -4,14 +4,14 @@ import { useRouter } from "next/router"
 
 import type { EgaProPage } from "@/types/pages"
 
-import { useCheckTokenInURL, useUser } from "contexts/auth"
+import { useCheckTokenInURL, useUser } from "@/contexts/auth"
 import { SinglePageLayout } from "@/components/ds/SinglePageLayout"
 import ButtonAction from "@/components/ds/ButtonAction"
 import Form, { FORM_ERROR } from "@/components/Form"
 import LabeledTextField from "@/components/LabeledTextField"
 import { sendValidationEmail } from "@/models/email"
 import { useToastMessage } from "@/utils/toast"
-import { EmailSchema } from "validations/email"
+import { EmailSchema } from "@/validations/email"
 
 const title = "Accéder à mes entreprises et déclarations transmises"
 

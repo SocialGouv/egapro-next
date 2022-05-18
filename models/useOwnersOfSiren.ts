@@ -2,7 +2,7 @@ import useSWR from "swr"
 
 import { fetcher, FetcherReturn } from "@/utils/fetcher"
 import { genericErrorMessage } from "@/utils/makeMessage"
-import { useLogoutIfExpiredToken } from "contexts/auth"
+import { useLogoutIfExpiredToken } from "@/contexts/auth"
 
 export function useOwnersOfSiren(siren: string): FetcherReturn & { owners: any } {
   const { data, error, mutate } = useSWR<{ owners: Array<string> }>(siren ? `/ownership/${siren}` : null, fetcher)

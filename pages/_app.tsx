@@ -10,7 +10,7 @@ import type { NextPage } from "next"
 import type { AppProps } from "next/app"
 
 import theme from "../theme"
-import { AuthContextProvider } from "contexts/auth"
+import { AuthContextProvider } from "@/contexts/auth"
 
 type NextPageWithLayout = NextPage & {
   // eslint-disable-next-line no-unused-vars
