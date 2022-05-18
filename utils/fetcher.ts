@@ -83,3 +83,10 @@ export const genericFetch = async (endpoint: string, options?: any) => {
 export const fetcher = async (key: string, options?: any) => {
   return genericFetch(API_URL + key, options)
 }
+
+export const post = async (url: string, data: Record<string, unknown>) => {
+  return genericFetch(API_URL + url, {
+    method: "POST",
+    body: JSON.stringify(data),
+  })
+}

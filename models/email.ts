@@ -1,7 +1,5 @@
-import { fetcher } from "@/utils/fetcher"
+import { post } from "@/utils/fetcher"
 
-export const sendValidationEmail = (email: string) =>
-  fetcher("/token", {
-    email,
-    url: `${window.location.href}?token=`,
-  })
+export const sendValidationEmail = async (data: { email: string }) => {
+  return post("/token", { ...data, url: `${window.location.href}?token=` })
+}

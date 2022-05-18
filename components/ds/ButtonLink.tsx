@@ -19,7 +19,7 @@ function ButtonLink({
   fullWidth,
 }: ButtonLinkProps) {
   return (
-    <Link href={to}>
+    <Link href={to} passHref>
       <Button
         colorScheme={colorScheme}
         variant={variant}

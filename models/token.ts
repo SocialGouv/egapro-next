@@ -1,10 +1,10 @@
 import { fetcher } from "@/utils/fetcher"
 
 export type TokenInfoType = {
-  avg: number
-  count: number
-  max: number
-  min: number
+  email: string
+  déclarations: Array<any>
+  ownership: Array<string>
+  staff: boolean
 }
 
 /**
@@ -13,12 +13,8 @@ export type TokenInfoType = {
  * @returns
  */
 // export async function getTokenInfo(): Promise<{ data: TokenInfoType | null }> {
-export async function getTokenInfo(): Promise<any> {
-  const data = await fetcher("/me")
-
-  return {
-    data,
-  }
+export async function getTokenInfo(): Promise<TokenInfoType> {
+  return await fetcher("/me")
 }
 
 /**

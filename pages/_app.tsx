@@ -10,6 +10,7 @@ import type { NextPage } from "next"
 import type { AppProps } from "next/app"
 
 import theme from "../theme"
+import { AuthContextProvider } from "contexts/auth"
 
 type NextPageWithLayout = NextPage & {
   // eslint-disable-next-line no-unused-vars
@@ -34,5 +35,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   const componentWithLayout = getLayout(<Component {...pageProps} />)
 
-  return <ChakraProvider theme={theme}>{componentWithLayout}</ChakraProvider>
+  return (
+    <ChakraProvider theme={theme}>
+      <AuthContextProvider>{componentWithLayout}</AuthContextProvider>
+    </ChakraProvider>
+  )
 }

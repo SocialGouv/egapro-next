@@ -12,7 +12,12 @@ export default function MesEntreprises() {
   const { ownership: sirens } = useUser()
   const orderedSirens = sirens.sort()
 
-  const [chosenSiren, setChosenSiren] = React.useState(orderedSirens?.[0] || "")
+  const [chosenSiren, setChosenSiren] = React.useState("")
+
+  React.useEffect(() => {
+    setChosenSiren(orderedSirens?.[0] || "")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sirens])
 
   return (
     <>

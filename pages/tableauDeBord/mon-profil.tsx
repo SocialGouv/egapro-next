@@ -1,7 +1,8 @@
 import React, { ReactElement } from "react"
 import { Avatar, Badge, Box, HStack, Text, VStack } from "@chakra-ui/react"
-import { SinglePageLayout } from "@/components/ds/SinglePageLayout"
+
 import { useUser } from "contexts/auth"
+import { SinglePageLayout } from "@/components/ds/SinglePageLayout"
 
 const title = "Mon profil"
 

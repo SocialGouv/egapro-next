@@ -3,16 +3,16 @@ import { Box, Flex, HStack, List, ListIcon, ListItem, Text } from "@chakra-ui/la
 import { Spinner } from "@chakra-ui/spinner"
 import { IconButton } from "@chakra-ui/button"
 import { useBoolean, useDisclosure } from "@chakra-ui/hooks"
-import { Form } from "react-final-form"
-// import { z } from "zod"
 
-import { fetcher } from "@/utils/fetcher"
+import Form from "@/components/Form"
+import LabeledTextField from "@/components/LabeledTextField"
 import { IconDrag, IconDelete } from "@/components/ds/Icons"
 import ButtonAction from "@/components/ds/ButtonAction"
 import Modal from "@/components/ds/Modal"
-import { useSoloToastMessage, useToastMessage } from "@/utils/toast"
 import { useOwnersOfSiren } from "@/models/useOwnersOfSiren"
-import { FieldEmail } from "./ds/FieldEmail"
+import { fetcher } from "@/utils/fetcher"
+import { useSoloToastMessage, useToastMessage } from "@/utils/toast"
+import { EmailSchema } from "validations/email"
 
 function UtilisateurItem({
   owner,
@@ -73,23 +73,6 @@ export default function UtilisateursEntreprise({ siren }: { siren: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- setShowAddForm is not added because the properties returned by useBoolean are stable values.
   }, [siren])
 
-  async function addUser(formData: any) {
-    setEmail(formData.email)
-
-    try {
-      await fetcher(`/ownership/${siren}/${formData.email}`, {
-        method: "PUT",
-      })
-      setEmail("")
-      setShowAddForm.off()
-      mutate([...owners, email])
-      toastSuccess("Le responsable a été ajouté.")
-    } catch (error) {
-      console.error(error)
-      toastError("Erreur pour ajouter cet email.")
-    }
-  }
-
   async function removeUser(owner: string, siren: string) {
     try {
       await fetcher(`/ownership/${siren}/${owner}`, {
@@ -102,10 +85,6 @@ export default function UtilisateursEntreprise({ siren }: { siren: string }) {
       toastError("Erreur pour supprimer cet email.")
     }
   }
-
-  // const FormInput = z.object({
-  //   email: z.string({ required_error: "L'adresse mail est requise" }).email({ message: "L'adresse mail est invalide" }),
-  // })
 
   return (
     <Box mt="4">
@@ -136,20 +115,32 @@ export default function UtilisateursEntreprise({ siren }: { siren: string }) {
             {showAddForm && (
               <Box mt="4">
                 <Form
-                  onSubmit={addUser}
-                  // validate={formValidator(FormInput)}
-                  render={({ handleSubmit }) => (
-                    <form onSubmit={handleSubmit}>
-                      <HStack spacing={4} align="flex-start">
-                        {/* <InputControl name="email" label="Email du responsable" /> */}
-                        <FieldEmail />
-                        <Box pt={8}>
-                          <ButtonAction type="submit" label="Ajouter" />
-                        </Box>
-                      </HStack>
-                    </form>
-                  )}
-                />
+                  schema={EmailSchema}
+                  onSubmit={async function addUser(formData) {
+                    setEmail(formData.email)
+
+                    try {
+                      await fetcher(`/ownership/${siren}/${formData.email}`, {
+                        method: "PUT",
+                      })
+                      setEmail("")
+                      setShowAddForm.off()
+                      mutate([...owners, email])
+                      toastSuccess("Le responsable a été ajouté.")
+                    } catch (error) {
+                      console.error(error)
+                      toastError("Erreur pour ajouter cet email.")
+                    }
+                  }}
+                >
+                  <HStack spacing={4} align="flex-start" mb="8">
+                    <LabeledTextField name="email" label="Email responsable" placeholder="jeanne.duval@yahoo.fr" />
+
+                    <Box pt={8}>
+                      <ButtonAction type="submit" label="Ajouter" />
+                    </Box>
+                  </HStack>
+                </Form>
               </Box>
             )}
           </Flex>

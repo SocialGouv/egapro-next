@@ -5,6 +5,9 @@ module.exports = {
     es2020: true,
     "jest/globals": true,
   },
+  globals: {
+    JSX: true,
+  },
   extends: [
     "next/core-web-vitals",
     "eslint:recommended",

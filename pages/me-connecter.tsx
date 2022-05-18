@@ -1,60 +1,54 @@
-import React, { ReactElement } from "react"
+import React from "react"
 import { Box, Text } from "@chakra-ui/layout"
-import { Form } from "react-final-form"
 import { useRouter } from "next/router"
+
+import type { EgaProPage } from "@/types/pages"
 
 import { useCheckTokenInURL, useUser } from "contexts/auth"
 import { SinglePageLayout } from "@/components/ds/SinglePageLayout"
 import ButtonAction from "@/components/ds/ButtonAction"
-import { FieldEmail } from "@/components/ds/FieldEmail"
-import { useToastMessage } from "@/utils/toast"
+import Form, { FORM_ERROR } from "@/components/Form"
+import LabeledTextField from "@/components/LabeledTextField"
 import { sendValidationEmail } from "@/models/email"
+import { useToastMessage } from "@/utils/toast"
+import { EmailSchema } from "validations/email"
 
 const title = "Accéder à mes entreprises et déclarations transmises"
 
-export default function Mire() {
+const MirePage: EgaProPage = () => {
   const router = useRouter()
-  const { toastSuccess, toastError } = useToastMessage({})
-  const [submitted, setSubmitted] = React.useState(false)
-  const [email, setEmail] = React.useState("")
+  const { toastSuccess } = useToastMessage({})
+  const [submittedEmail, setSubmittedEmail] = React.useState("")
   const { isAuthenticated, staff } = useUser()
 
   useCheckTokenInURL()
-
-  const onSubmit = (formData: any) => {
-    setEmail(formData.email)
-
-    sendValidationEmail(formData.email)
-      .then(() => {
-        toastSuccess("Un mail vous a été envoyé")
-        setSubmitted(true)
-      })
-      .catch((error: Error) => {
-        console.error(error)
-        toastError("Erreur lors de l'envoi de l'email de validation, est-ce que l'email est valide ?")
-        setSubmitted(false)
-      })
-  }
 
   if (staff) router.push("/tableauDeBord/gerer-utilisateurs")
   if (isAuthenticated) router.push("/tableauDeBord/mes-entreprises")
 
   return (
     <>
-      {submitted ? (
+      {submittedEmail ? (
         <Box>
           <Text as="p" mb="4">
             Un mail vous a été envoyé.
           </Text>
           <Text as="p" mb="4">
-            Si vous ne recevez pas ce mail sous peu, il se peut que l'email saisi (<strong>{email}</strong>) soit
-            incorrect, ou bien que le mail ait été déplacé dans votre dossier de courriers indésirables ou dans le
+            Si vous ne recevez pas ce mail sous peu, il se peut que l'email saisi (<strong>{submittedEmail}</strong>)
+            soit incorrect, ou bien que le mail ait été déplacé dans votre dossier de courriers indésirables ou dans le
             dossier SPAM.
           </Text>
           <Text as="p" mb="4">
             En cas d'échec, la procédure devra être reprise avec un autre email.
           </Text>
-          <ButtonAction mt={6} onClick={() => router.push("/")} label="Réessayer" />
+          <ButtonAction
+            mt={6}
+            onClick={() => {
+              setSubmittedEmail("")
+              router.push("/me-connecter")
+            }}
+            label="Réessayer"
+          />
         </Box>
       ) : (
         <Box>
@@ -68,25 +62,35 @@ export default function Mire() {
             </Text>
           </Box>
           <Form
-            onSubmit={onSubmit}
-            render={({ handleSubmit, submitting, pristine }) => (
-              <form onSubmit={handleSubmit}>
-                <FieldEmail />
+            schema={EmailSchema}
+            onSubmit={async (formData) => {
+              try {
+                await sendValidationEmail(formData)
+                toastSuccess("Un mail vous a été envoyé")
+                setSubmittedEmail(formData.email)
+              } catch (error) {
+                console.error(error)
+                setSubmittedEmail("")
 
-                <ButtonAction type="submit" disabled={submitting || pristine} mt={6} label="Envoyer" />
-              </form>
-            )}
-          />
+                return {
+                  [FORM_ERROR]: "Erreur lors de l'envoi de l'email de validation, est-ce que l'email est valide ?",
+                }
+              }
+            }}
+            submitText="Envoyer"
+          >
+            <LabeledTextField name="email" label="Email" placeholder="Email" />
+          </Form>
         </Box>
       )}
     </>
   )
 }
 
-Mire.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <SinglePageLayout maxW="container.md" title={title}>
-      {page}
-    </SinglePageLayout>
-  )
-}
+MirePage.getLayout = (page) => (
+  <SinglePageLayout maxW="container.md" title={title}>
+    {page}
+  </SinglePageLayout>
+)
+
+export default MirePage

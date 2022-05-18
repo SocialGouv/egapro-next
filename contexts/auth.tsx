@@ -31,14 +31,14 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
           const tokenInfo = await getTokenInfo()
 
           if (tokenInfo) {
-            localStorage.setItem("tokenInfo", JSON.stringify(tokenInfo?.jsonBody) || "")
+            localStorage.setItem("tokenInfo", JSON.stringify(tokenInfo) || "")
 
             const newContext = {
               ...context,
-              ...(tokenInfo?.jsonBody?.email && { email: tokenInfo?.jsonBody?.email }),
-              ...(tokenInfo?.jsonBody?.ownership && { ownership: tokenInfo?.jsonBody?.ownership }),
-              ...(tokenInfo?.jsonBody?.staff && { staff: tokenInfo?.jsonBody?.staff }),
-              isAuthenticated: Boolean(tokenInfo?.jsonBody?.email),
+              ...(tokenInfo.email && { email: tokenInfo.email }),
+              ...(tokenInfo.ownership && { ownership: tokenInfo.ownership }),
+              ...(tokenInfo.staff && { staff: tokenInfo.staff }),
+              isAuthenticated: Boolean(tokenInfo.email),
             }
 
             setContext(newContext)
@@ -94,6 +94,7 @@ export function useCheckTokenInURL() {
 
       if (tokenInURL) {
         await login(tokenInURL)
+
         // Reset the token in the search params so it won't be in the URL and won't be bookmarkable (which is a bad practice?)
         router.push({ search: "" })
       }
