@@ -87,65 +87,69 @@ export default function UtilisateursEntreprise({ siren }: { siren: string }) {
   }
 
   return (
-    <Box mt="4">
-      {isLoading ? (
-        <Box m="6">
-          <Spinner />
+    <>
+      {siren && (
+        <Box mt="4">
+          {isLoading ? (
+            <Box m="6">
+              <Spinner />
+            </Box>
+          ) : (
+            <>
+              <Text fontSize="md" fontWeight="bold" color="green.500" mb="2">
+                Responsables
+              </Text>
+
+              <List spacing={3}>
+                {owners?.map((owner: string) => (
+                  <UtilisateurItem key={owner} owner={owner} siren={siren} removeUser={removeUser} />
+                ))}
+              </List>
+
+              <Flex mt="6" direction="column">
+                <ButtonAction
+                  variant="outline"
+                  onClick={setShowAddForm.toggle}
+                  label="Vous souhaitez ajouter un responsable ?"
+                  leftIcon={<span aria-hidden="true">🙋</span>}
+                />
+
+                {showAddForm && (
+                  <Box mt="4">
+                    <Form
+                      schema={EmailSchema}
+                      onSubmit={async function addUser(formData) {
+                        setEmail(formData.email)
+
+                        try {
+                          await fetcher(`/ownership/${siren}/${formData.email}`, {
+                            method: "PUT",
+                          })
+                          setEmail("")
+                          setShowAddForm.off()
+                          mutate([...owners, email])
+                          toastSuccess("Le responsable a été ajouté.")
+                        } catch (error) {
+                          console.error(error)
+                          toastError("Erreur pour ajouter cet email.")
+                        }
+                      }}
+                    >
+                      <HStack spacing={4} align="flex-start" mb="8">
+                        <LabeledTextField name="email" label="Email responsable" placeholder="jeanne.duval@yahoo.fr" />
+
+                        <Box pt={8}>
+                          <ButtonAction type="submit" label="Ajouter" />
+                        </Box>
+                      </HStack>
+                    </Form>
+                  </Box>
+                )}
+              </Flex>
+            </>
+          )}
         </Box>
-      ) : (
-        <>
-          <Text fontSize="md" fontWeight="bold" color="green.500" mb="2">
-            Responsables
-          </Text>
-
-          <List spacing={3}>
-            {owners?.map((owner: string) => (
-              <UtilisateurItem key={owner} owner={owner} siren={siren} removeUser={removeUser} />
-            ))}
-          </List>
-
-          <Flex mt="6" direction="column">
-            <ButtonAction
-              variant="outline"
-              onClick={setShowAddForm.toggle}
-              label="Vous souhaitez ajouter un responsable ?"
-              leftIcon={<span aria-hidden="true">🙋</span>}
-            />
-
-            {showAddForm && (
-              <Box mt="4">
-                <Form
-                  schema={EmailSchema}
-                  onSubmit={async function addUser(formData) {
-                    setEmail(formData.email)
-
-                    try {
-                      await fetcher(`/ownership/${siren}/${formData.email}`, {
-                        method: "PUT",
-                      })
-                      setEmail("")
-                      setShowAddForm.off()
-                      mutate([...owners, email])
-                      toastSuccess("Le responsable a été ajouté.")
-                    } catch (error) {
-                      console.error(error)
-                      toastError("Erreur pour ajouter cet email.")
-                    }
-                  }}
-                >
-                  <HStack spacing={4} align="flex-start" mb="8">
-                    <LabeledTextField name="email" label="Email responsable" placeholder="jeanne.duval@yahoo.fr" />
-
-                    <Box pt={8}>
-                      <ButtonAction type="submit" label="Ajouter" />
-                    </Box>
-                  </HStack>
-                </Form>
-              </Box>
-            )}
-          </Flex>
-        </>
       )}
-    </Box>
+    </>
   )
 }

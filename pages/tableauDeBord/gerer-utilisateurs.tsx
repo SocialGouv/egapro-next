@@ -1,5 +1,8 @@
 import React from "react"
-import { Flex, Text } from "@chakra-ui/react"
+import { Flex, FormControl, FormLabel, Input, Text } from "@chakra-ui/react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import type { EgaProPage } from "@/types/pages"
 
@@ -7,38 +10,64 @@ import { useUser } from "@/contexts/auth"
 import InfoEntreprise from "@/components/InfoEntreprise"
 import UtilisateursEntreprise from "@/components/UtilisateursEntreprise"
 import { SinglePageLayout } from "@/components/ds/SinglePageLayout"
-import Form from "@/components/Form"
+import { NoCompanyFound } from "@/components/NoCompanyFound"
+import { AlertSpinner } from "@/components/ds/AlertSpinner"
 import { SirenSchema } from "@/validations/siren"
-import LabeledTextField from "@/components/LabeledTextField"
+import { useSiren } from "@/models/useSiren"
 
 const GererUtilisateursPage: EgaProPage = () => {
   const { staff } = useUser()
 
-  const [siren, setSiren] = React.useState("")
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { isValid },
+  } = useForm<z.infer<typeof SirenSchema>>({
+    mode: "onChange",
+    resolver: zodResolver(SirenSchema),
+    defaultValues: {
+      siren: "",
+    },
+  })
+
+  // Subscribe to change on siren input.
+  const watchSiren = watch("siren")
+
+  const { entreprise, isLoading } = useSiren(watchSiren)
+
+  if (!staff) {
+    return <Text>Vous n'êtes pas membre du staff.</Text>
+  }
 
   return (
     <>
-      {!staff ? (
-        <Text>Vous n'êtes pas membre du staff.</Text>
-      ) : (
-        <>
-          <Form
-            schema={SirenSchema}
-            onSubmit={async ({ siren }) => {
-              if (siren?.length === 9) {
-                setSiren(siren ? siren.replace(/\s/g, "") : siren)
-              }
-            }}
-            submitText="Envoyer"
-          >
-            <LabeledTextField name="siren" label="SIREN" placeholder="Saisissez le SIREN de l'entreprise" />
-          </Form>
+      <form>
+        <FormControl>
+          <FormLabel htmlFor="siren">SIREN</FormLabel>
+          <Input
+            id="siren"
+            {...register("siren", {
+              onChange: (e) => {
+                // Remove spaces and limit to 9 numeric characters.
+                const newSiren = e.target.value.replace(/\D/g, "")
+                setValue("siren", newSiren.slice(0, 9))
+              },
+            })}
+            placeholder="Saisissez le SIREN de l'entreprise"
+          />
+        </FormControl>
+      </form>
 
-          <Flex mt="6" direction="column">
-            <InfoEntreprise siren={siren} />
-            <UtilisateursEntreprise siren={siren} />
-          </Flex>
-        </>
+      {isLoading && <AlertSpinner>Recherche en cours</AlertSpinner>}
+
+      {isValid && !entreprise && <NoCompanyFound />}
+
+      {entreprise && (
+        <Flex mt="6" direction="column">
+          <InfoEntreprise siren={watchSiren} />
+          <UtilisateursEntreprise siren={watchSiren} />
+        </Flex>
       )}
     </>
   )

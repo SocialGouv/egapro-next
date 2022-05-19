@@ -2,6 +2,7 @@ import useSWR from "swr"
 
 import { genericErrorMessage } from "@/utils/makeMessage"
 import { FetcherReturn, genericFetch } from "@/utils/fetcher"
+import { SirenSchema } from "@/validations/siren"
 
 const API_SOCIAL_GOUV_SIREN = "https://search-recherche-entreprises.fabrique.social.gouv.fr/api/v1/entreprise/"
 
@@ -21,7 +22,9 @@ type ReturnApiType = {
 }
 
 export function useSiren(siren: string): FetcherReturn & { entreprise: any } {
-  const { data, error, mutate } = useSWR<ReturnApiType>(siren ? siren : null, fetcherSiren, {
+  const { success: isValidSiren } = SirenSchema.safeParse({ siren })
+
+  const { data, error, mutate } = useSWR<ReturnApiType>(isValidSiren ? siren : null, fetcherSiren, {
     onErrorRetry: (error) => {
       // Never retry on 404.
       if (error.status === 404) return
@@ -29,7 +32,7 @@ export function useSiren(siren: string): FetcherReturn & { entreprise: any } {
     revalidateOnFocus: false,
   })
 
-  const isLoading = !data && !error
+  const isLoading = isValidSiren && !data && !error
   const isError = Boolean(error)
 
   const entreprise = data ? { raison_sociale: data.label, adresse: data.firstMatchingEtablissement?.address } : null

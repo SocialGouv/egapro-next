@@ -13,12 +13,13 @@ export interface LabeledTextFieldProps extends ComponentPropsWithoutRef<"input">
   labelProps?: ComponentPropsWithoutRef<"label">
   helperText?: string
   placeholder?: string
+  showError?: boolean
 }
 
 // eslint-disable-next-line react/display-name
 export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldProps>(
   // eslint-disable-next-line no-unused-vars
-  ({ label, outerProps, labelProps, name, helperText, placeholder, ...props }, ref) => {
+  ({ name, label, type = "text", outerProps, labelProps, helperText, placeholder, showError = true }, ref) => {
     const {
       register,
       formState: { isSubmitting, errors },
@@ -26,11 +27,13 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
     const error = Array.isArray(errors[name]) ? errors[name].join(", ") : errors[name]?.message || errors[name]
 
     return (
-      <FormControl isDisabled={isSubmitting} isInvalid={error} {...outerProps}>
-        <FormLabel htmlFor={name}>{label}</FormLabel>
-        <Input id={name} {...register(name)} placeholder={placeholder} />
+      <FormControl isDisabled={isSubmitting} isInvalid={showError && error} {...outerProps}>
+        <FormLabel htmlFor={name} {...labelProps}>
+          {label}
+        </FormLabel>
+        <Input id={name} type={type} {...register(name)} placeholder={placeholder} />
         <FormHelperText>{helperText}</FormHelperText>
-        <FormErrorMessage>{error}</FormErrorMessage>
+        <FormErrorMessage>{showError && error}</FormErrorMessage>
       </FormControl>
     )
   },

@@ -1,6 +1,6 @@
 // Form wrapper from blitz.js : https://github.com/blitz-js/blitz/blob/canary/packages/generator/templates/app/_forms/hookform/Form.tsx
 import React, { useState, ReactNode } from "react"
-import { FormProvider, useForm, UseFormProps } from "react-hook-form"
+import { FormProvider, useForm, UseFormProps, ValidationMode } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { Alert, AlertDescription, AlertIcon } from "@chakra-ui/react"
@@ -18,6 +18,7 @@ export interface FormProps<S extends z.ZodType<any, any>>
   // eslint-disable-next-line no-unused-vars
   onSubmit: (values: z.infer<S>) => Promise<void | OnSubmitResult>
   initialValues?: UseFormProps<z.infer<S>>["defaultValues"]
+  mode?: keyof ValidationMode
 }
 
 interface OnSubmitResult {
@@ -38,10 +39,11 @@ export function Form<S extends z.ZodType<any, any>>({
   schema,
   initialValues,
   onSubmit,
+  mode = "onBlur",
   ...props
 }: FormProps<S>) {
   const ctx = useForm<z.infer<S>>({
-    mode: "onBlur",
+    mode: mode,
     resolver: schema ? zodResolver(schema) : undefined,
     defaultValues: initialValues,
   })
@@ -88,7 +90,7 @@ export function Form<S extends z.ZodType<any, any>>({
         {/* Form fields supplied as children are rendered here */}
         {children}
 
-        {submitText && <ButtonAction type="submit" disabled={ctx.formState.isSubmitting} mt={6} label={submitText} />}
+        {submitText && <ButtonAction type="submit" disabled={!ctx.formState.isValid} mt={6} label={submitText} />}
       </form>
     </FormProvider>
   )

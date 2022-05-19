@@ -4,9 +4,7 @@ import { useRouter } from "next/router"
 import { ParsedUrlQuery } from "querystring"
 import {
   Alert,
-  AlertDescription,
   AlertIcon,
-  AlertTitle,
   Box,
   Flex,
   Heading,
@@ -37,6 +35,7 @@ import { filterDepartements, useConfig } from "@/models/useConfig"
 import { capitalize } from "@/utils/string"
 import { useCallbackOnMount } from "@/utils/hooks"
 import { Banner } from "@/components/ds/Banner"
+import { NoCompanyFound } from "@/components/NoCompanyFound"
 
 function useAdressLabel({ departement, region }: { departement?: string; region?: string }) {
   const { config } = useConfig()
@@ -324,25 +323,7 @@ function DisplayCompanies({ companies, error }: { companies: CompaniesType; erro
   }
 
   if (companies?.count === 0) {
-    return (
-      <Alert
-        status="info"
-        variant="subtle"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        textAlign="center"
-        height="200px"
-        mt={4}
-        colorScheme="cyan"
-      >
-        <AlertIcon boxSize="40px" mr={0} />
-        <AlertTitle mt={4} mb={1} fontSize="lg">
-          Aucune entreprise trouvée
-        </AlertTitle>
-        <AlertDescription maxWidth="sm">Veuillez modifier vos paramètres de recherche.</AlertDescription>
-      </Alert>
-    )
+    return <NoCompanyFound />
   }
 
   return (
