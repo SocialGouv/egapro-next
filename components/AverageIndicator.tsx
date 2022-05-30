@@ -158,7 +158,7 @@ export function AverageIndicator() {
           mt={8}
           label="Voir les entreprises"
           type="submit"
-          onClick={() => router.push(`/recherche${urlSearchParams ? `?${urlSearchParams}` : ""}`)}
+          onClick={() => router.push(`/consulter-index/recherche${urlSearchParams ? `?${urlSearchParams}` : ""}`)}
         />
       </Box>
     </Center>

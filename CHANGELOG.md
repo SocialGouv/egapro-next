@@ -1,3 +1,24 @@
+# [1.22.0](https://github.com/SocialGouv/egapro-next/compare/v1.21.0...v1.22.0) (2022-05-30)
+
+
+### Bug Fixes
+
+* need to set up version as master is to remove error of semantic release ([f0ac8a6](https://github.com/SocialGouv/egapro-next/commit/f0ac8a6f818eeb4836a2c065aa351807a41a5d75))
+* **GH:** semantic relase on test branch ([3e512e3](https://github.com/SocialGouv/egapro-next/commit/3e512e3ca8fae1bd65c8ec25860bd57b01a91bc7))
+* absolute imports for contexts and validations ([8393385](https://github.com/SocialGouv/egapro-next/commit/8393385ce1ff688861646a3b34c47028a063be78))
+* problem for tests, expect reference error ? ([0b789ef](https://github.com/SocialGouv/egapro-next/commit/0b789eff74945d8c4e89e4f351c3f2f114e7f1b7))
+
+
+### Features
+
+* add homepage and private pages from simu ([cab0649](https://github.com/SocialGouv/egapro-next/commit/cab0649ae870b4535ee34cc6179f07c46a744ae4))
+* improve gerer-utilisateurs ([6c9253a](https://github.com/SocialGouv/egapro-next/commit/6c9253a157a7d619b93c112fcf57b49c2b089049))
+* microfrontend changes wip ([f6ce9b8](https://github.com/SocialGouv/egapro-next/commit/f6ce9b8b38b52a1587187f8500665c7a1e127e6a))
+* migration of Mon Espace pages + authent ([7c96e7a](https://github.com/SocialGouv/egapro-next/commit/7c96e7aeed30443f88f9cbf82b87b244675cf242))
+* netlify preview workflow ([32102d1](https://github.com/SocialGouv/egapro-next/commit/32102d12aa0dc6885dbc1299fa4c6773dd5ce546))
+* siren validator ([a688133](https://github.com/SocialGouv/egapro-next/commit/a6881332756ae13c15ca363714244f4295f1f8fc))
+* update name of pages ([9dc2964](https://github.com/SocialGouv/egapro-next/commit/9dc2964cc02da7e7cea2ca5e230ce986e8bc518e))
+
 # [1.21.0](https://github.com/SocialGouv/egapro-next/compare/v1.20.0...v1.21.0) (2022-05-25)
 
 

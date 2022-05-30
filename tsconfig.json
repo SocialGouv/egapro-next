@@ -5,11 +5,20 @@
       "@/components/*": [
         "components/*"
       ],
+      "@/pages/*": [
+        "pages/*"
+      ],
       "@/models/*": [
         "models/*"
       ],
       "@/utils/*": [
         "utils/*"
+      ],
+      "@/contexts/*": [
+        "contexts/*"
+      ],
+      "@/validations/*": [
+        "validations/*"
       ],
       "@/types/*": [
         "types/*"
