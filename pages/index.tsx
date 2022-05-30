@@ -11,7 +11,7 @@ export default function HomePage() {
   const router = useRouter()
 
   const onClick = () => {
-    router.push("/nouvelle-simulation")
+    router.push("/simulateur/nouvelle-simulation")
   }
 
   return (

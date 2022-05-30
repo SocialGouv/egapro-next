@@ -18,7 +18,7 @@ export default function NotFoundPage() {
 
       <Box textAlign="center" mt="8">
         <Text as="h2" fontSize="2xl">
-          Malheureusement la page que vous cherchez n'existe pas !
+          Malheureusement la page que vous cherchez n'existe pas ! (Next.js)
         </Text>
       </Box>
     </>
