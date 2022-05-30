@@ -1,3 +1,59 @@
+# [1.21.0](https://github.com/SocialGouv/egapro-next/compare/v1.20.0...v1.21.0) (2022-05-25)
+
+
+### Features
+
+* **netlify:** use PUBLIC_URL for simu ([f415fcf](https://github.com/SocialGouv/egapro-next/commit/f415fcfbcc60af3932a185d52eda5aa86ba1100b))
+
+# [1.20.0](https://github.com/SocialGouv/egapro-next/compare/v1.19.0...v1.20.0) (2022-05-25)
+
+
+### Features
+
+* **netlify:** wip ([fb80569](https://github.com/SocialGouv/egapro-next/commit/fb80569ae2f8dcb2ca6aa85e5a26fb20ea1e98e0))
+
+# [1.19.0](https://github.com/SocialGouv/egapro-next/compare/v1.18.0...v1.19.0) (2022-05-24)
+
+
+### Features
+
+* **netlify:** wip ([2ad88f4](https://github.com/SocialGouv/egapro-next/commit/2ad88f41d33586e74b8ca25a1d86c560f6ad20d7))
+
+# [1.18.0](https://github.com/SocialGouv/egapro-next/compare/v1.17.0...v1.18.0) (2022-05-24)
+
+
+### Features
+
+* **netlify:** wip ([5fabdff](https://github.com/SocialGouv/egapro-next/commit/5fabdff5c061a5b4ebe0acc5de48bb3023c6a001))
+
+# [1.17.0](https://github.com/SocialGouv/egapro-next/compare/v1.16.0...v1.17.0) (2022-05-24)
+
+
+### Features
+
+* **netlify:** wip ([8441940](https://github.com/SocialGouv/egapro-next/commit/84419400813c03e79070baf9736a623d5ef0a4d3))
+
+# [1.16.0](https://github.com/SocialGouv/egapro-next/compare/v1.15.0...v1.16.0) (2022-05-24)
+
+
+### Features
+
+* **netlify:** wip ([08ea86e](https://github.com/SocialGouv/egapro-next/commit/08ea86e7d846b7165617669986b10ca7a0735bfa))
+
+# [1.15.0](https://github.com/SocialGouv/egapro-next/compare/v1.14.0...v1.15.0) (2022-05-24)
+
+
+### Features
+
+* netlify (wip) ([3c7b5a8](https://github.com/SocialGouv/egapro-next/commit/3c7b5a854d701a3312164e85f433a27d25e4cfec))
+
+# [1.14.0](https://github.com/SocialGouv/egapro-next/compare/v1.13.0...v1.14.0) (2022-05-24)
+
+
+### Features
+
+* netlify preview GH workflow ([9167e9c](https://github.com/SocialGouv/egapro-next/commit/9167e9c352fcb1d3d8e645555bdf48d8a01d46b9))
+
 # [1.13.0](https://github.com/SocialGouv/egapro-next/compare/v1.12.0...v1.13.0) (2022-03-10)
 
 
