@@ -13,4 +13,6 @@ const theme = extendTheme({
   ...components,
 });
 
+console.log(theme.components.Input);
+
 export default theme;

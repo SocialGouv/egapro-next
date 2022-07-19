@@ -21,31 +21,27 @@ const Button = ({
   return (
     <ButtonChakra
       size={size}
-      bg={
-        theme === "primary" ? "var(--blue-france-sun-113-625)" : "transparent"
-      }
+      bg={theme === "primary" ? "var(--blue-france-113)" : "transparent"}
       border={`1px solid ${
-        (theme === "secondary" && "var(--blue-france-sun-113-625)") ||
-        (theme === "tertiary" && "var(--grey-925-125)") ||
+        (theme === "secondary" && "var(--blue-france-113)") ||
+        (theme === "tertiary" && "var(--grey-925)") ||
         "transparent"
       }`}
-      color={
-        theme === "primary" ? "var(--white)" : "var(--blue-france-sun-113-625)"
-      }
+      color={theme === "primary" ? "var(--white)" : "var(--blue-france-113)"}
       _focus={{
         boxShadow: "none",
       }}
       _hover={{
         bg:
           theme === "primary"
-            ? "var(--blue-france-sun-113-625-hover)"
-            : "var(--grey-1000-50-hover)",
+            ? "var(--blue-france-113-hover)"
+            : "var(--grey-1000-hover)",
       }}
       _active={{
         bg:
           theme === "primary"
-            ? "var(--blue-france-sun-113-625-active)"
-            : "var(--grey-1000-50-active)",
+            ? "var(--blue-france-113-active)"
+            : "var(--grey-1000-active)",
       }}
       sx={{
         "&:focus-visible": {
@@ -55,10 +51,10 @@ const Button = ({
         },
         "&:disabled": {
           opacity: 1,
-          bg: theme === "primary" ? "var(--grey-925-125)" : "transparent",
+          bg: theme === "primary" ? "var(--grey-925)" : "transparent",
           borderColor:
-            theme === "secondary" ? "var(--grey-925-125)" : "transparent",
-          color: "var(--grey-625-425)",
+            theme === "secondary" ? "var(--grey-925)" : "transparent",
+          color: "var(--grey-850-active)",
         },
         ".chakra-button__icon svg": {
           width: size === "lg" ? 6 : 4,
