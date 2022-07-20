@@ -1,7 +1,8 @@
-import React from "react"
-import { Textarea as TextareaChakra } from "@chakra-ui/react"
+import React, { FunctionComponent } from "react"
+import { Select as SelectChakra } from "@chakra-ui/react"
+import { RiArrowDownSLine } from "react-icons/ri"
 
-type TextareaProps = {
+type SelectProps = {
   isDisabled?: boolean
   isInvalid?: boolean
   isValid?: boolean
@@ -9,9 +10,10 @@ type TextareaProps = {
   isRequired?: boolean
 }
 
-const Textarea = ({ isInvalid, isValid, ...rest }: TextareaProps) => {
+const Select: FunctionComponent<SelectProps> = ({ isInvalid, isValid, children, ...rest }) => {
   return (
-    <TextareaChakra
+    <SelectChakra
+      icon={<RiArrowDownSLine />}
       bg="var(--background-contrast-grey)"
       color="var(--text-label-grey)"
       borderRadius={"0.25rem 0.25rem 0 0"}
@@ -27,7 +29,6 @@ const Textarea = ({ isInvalid, isValid, ...rest }: TextareaProps) => {
       }}
       {...rest}
       sx={{
-        maxHeight: "2.5rem",
         borderTop: "none",
         borderLeft: "none",
         borderRight: "none",
@@ -52,8 +53,10 @@ const Textarea = ({ isInvalid, isValid, ...rest }: TextareaProps) => {
           color: "var(--text-mention-grey)",
         },
       }}
-    />
+    >
+      {children}
+    </SelectChakra>
   )
 }
 
-export default Textarea
+export default Select

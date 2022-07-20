@@ -1,7 +1,7 @@
 import React from "react"
 import { Input as InputChakra, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react"
 
-type InputChakraProps = {
+type InputProps = {
   isDisabled?: boolean
   isInvalid?: boolean
   isValid?: boolean
@@ -11,7 +11,7 @@ type InputChakraProps = {
   rightIcon?: React.ReactElement
 }
 
-const Input = ({ isInvalid, isValid, leftIcon, rightIcon, ...rest }: InputChakraProps) => {
+const Input = ({ isInvalid, isValid, leftIcon, rightIcon, ...rest }: InputProps) => {
   return (
     <InputGroup color="var(--text-label-grey)">
       {leftIcon && <InputLeftElement pointerEvents="none">{leftIcon}</InputLeftElement>}
