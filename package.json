@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "scripts/dev",
     "dev:app": "yarn workspace app run dev",
+    "dev:app-storybook": "yarn workspace app run storybook",
     "dev:api": "docker-compose up --build api",
     "dev:declaration": "docker-compose up --build declaration",
     "dev:simulateur": "yarn workspace simulateur run dev",
