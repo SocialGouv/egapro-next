@@ -1,7 +1,7 @@
-import { extendTheme } from "@chakra-ui/react";
-import tokens from "./tokens";
-import globals from "./globals";
-import components from "./components";
+import { extendTheme } from "@chakra-ui/react"
+import tokens from "./tokens"
+import globals from "./globals"
+import components from "./components"
 
 const theme = extendTheme({
   config: {
@@ -11,8 +11,8 @@ const theme = extendTheme({
   ...globals,
   ...tokens,
   ...components,
-});
+})
 
-console.log(theme.components.Input);
+console.log(theme.components.Input)
 
-export default theme;
+export default theme

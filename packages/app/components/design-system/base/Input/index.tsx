@@ -1,33 +1,20 @@
-import React from "react";
-import {
-  Input as InputChakra,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-} from "@chakra-ui/react";
+import React from "react"
+import { Input as InputChakra, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react"
 
 type InputChakraProps = {
-  isDisabled?: boolean;
-  isInvalid?: boolean;
-  isValid?: boolean;
-  isReadOnly?: boolean;
-  isRequired?: boolean;
-  leftIcon?: React.ReactElement;
-  rightIcon?: React.ReactElement;
-};
+  isDisabled?: boolean
+  isInvalid?: boolean
+  isValid?: boolean
+  isReadOnly?: boolean
+  isRequired?: boolean
+  leftIcon?: React.ReactElement
+  rightIcon?: React.ReactElement
+}
 
-const Input = ({
-  isInvalid,
-  isValid,
-  leftIcon,
-  rightIcon,
-  ...rest
-}: InputChakraProps) => {
+const Input = ({ isInvalid, isValid, leftIcon, rightIcon, ...rest }: InputChakraProps) => {
   return (
     <InputGroup color="var(--text-label-grey)">
-      {leftIcon && (
-        <InputLeftElement pointerEvents="none" children={leftIcon} />
-      )}
+      {leftIcon && <InputLeftElement pointerEvents="none">{leftIcon}</InputLeftElement>}
       <InputChakra
         bg="var(--background-contrast-grey)"
         color="var(--text-label-grey)"
@@ -69,11 +56,9 @@ const Input = ({
           },
         }}
       />
-      {rightIcon && (
-        <InputRightElement pointerEvents="none" children={rightIcon} />
-      )}
+      {rightIcon && <InputRightElement pointerEvents="none">{rightIcon}</InputRightElement>}
     </InputGroup>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

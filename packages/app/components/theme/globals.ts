@@ -5,8 +5,9 @@ const styles = {
   },
   styles: {
     global: {
-      "html, body, #root": {
-        height: "100%",
+      body: {
+        backgroundColor: "var(--background-default-grey)",
+        color: "var(--text-default-grey)",
       },
       ":root": {
         "--outline-focus-blue": "#0a76f6",
@@ -21,26 +22,19 @@ const styles = {
         "--background-alt-grey-active": "var(--grey-975-75-active)",
         "--background-alt-blue-france": "var(--blue-france-975-75)",
         "--background-alt-blue-france-hover": "var(--blue-france-975-75-hover)",
-        "--background-alt-blue-france-active":
-          "var(--blue-france-975-75-active)",
+        "--background-alt-blue-france-active": "var(--blue-france-975-75-active)",
         "--background-alt-red-marianne": "var(--red-marianne-975-75)",
-        "--background-alt-red-marianne-hover":
-          "var(--red-marianne-975-75-hover)",
-        "--background-alt-red-marianne-active":
-          "var(--red-marianne-975-75-active)",
+        "--background-alt-red-marianne-hover": "var(--red-marianne-975-75-hover)",
+        "--background-alt-red-marianne-active": "var(--red-marianne-975-75-active)",
         "--background-contrast-grey": "var(--grey-950-100)",
         "--background-contrast-grey-hover": "var(--grey-950-100-hover)",
         "--background-contrast-grey-active": "var(--grey-950-100-active)",
         "--background-contrast-blue-france": "var(--blue-france-950-100)",
-        "--background-contrast-blue-france-hover":
-          "var(--blue-france-950-100-hover)",
-        "--background-contrast-blue-france-active":
-          "var(--blue-france-950-100-active)",
+        "--background-contrast-blue-france-hover": "var(--blue-france-950-100-hover)",
+        "--background-contrast-blue-france-active": "var(--blue-france-950-100-active)",
         "--background-contrast-red-marianne": "var(--red-marianne-950-100)",
-        "--background-contrast-red-marianne-hover":
-          "var(--red-marianne-950-100-hover)",
-        "--background-contrast-red-marianne-active":
-          "var(--red-marianne-950-100-active)",
+        "--background-contrast-red-marianne-hover": "var(--red-marianne-950-100-hover)",
+        "--background-contrast-red-marianne-active": "var(--red-marianne-950-100-active)",
         "--background-contrast-info": "var(--info-950-100)",
         "--background-contrast-info-hover": "var(--info-950-100-hover)",
         "--background-contrast-info-active": "var(--info-950-100-active)",
@@ -58,63 +52,42 @@ const styles = {
         "--background-flat-success": "var(--success-425-625)",
         "--background-flat-warning": "var(--warning-425-625)",
         "--background-flat-error": "var(--error-425-625)",
-        "--background-action-high-blue-france":
-          "var(--blue-france-sun-113-625)",
-        "--background-action-high-blue-france-hover":
-          "var(--blue-france-sun-113-625-hover)",
-        "--background-action-high-blue-france-active":
-          "var(--blue-france-sun-113-625-active)",
+        "--background-action-high-blue-france": "var(--blue-france-sun-113-625)",
+        "--background-action-high-blue-france-hover": "var(--blue-france-sun-113-625-hover)",
+        "--background-action-high-blue-france-active": "var(--blue-france-sun-113-625-active)",
         "--background-action-high-red-marianne": "var(--red-marianne-425-625)",
-        "--background-action-high-red-marianne-hover":
-          "var(--red-marianne-425-625-hover)",
-        "--background-action-high-red-marianne-active":
-          "va(--red-marianne-425-625-active)",
+        "--background-action-high-red-marianne-hover": "var(--red-marianne-425-625-hover)",
+        "--background-action-high-red-marianne-active": "va(--red-marianne-425-625-active)",
         "--background-action-high-info": "var(--info-425-625)",
         "--background-action-high-info-hover": "var(--info-425-625-hover)",
         "--background-action-high-info-active": "var(--info-425-625-active)",
         "--background-action-high-success": "var(--success-425-625)",
-        "--background-action-high-success-hover":
-          "var(--success-425-625-hover)",
-        "--background-action-high-success-active":
-          "var(--success-425-625-active)",
+        "--background-action-high-success-hover": "var(--success-425-625-hover)",
+        "--background-action-high-success-active": "var(--success-425-625-active)",
         "--background-action-high-warning": "var(--warning-425-625)",
-        "--background-action-high-warning-hover":
-          "var(--warning-425-625-hover)",
-        "--background-action-high-warning-active":
-          "var(--warning-425-625-active)",
+        "--background-action-high-warning-hover": "var(--warning-425-625-hover)",
+        "--background-action-high-warning-active": "var(--warning-425-625-active)",
         "--background-action-high-error": "var(--error-425-625)",
         "--background-action-high-error-hover": "var(--error-425-625-hover)",
         "--background-action-high-error-active": "var(--error-425-625-active)",
         "--background-action-low-blue-france": "var(--blue-france-925-125)",
-        "--background-action-low-blue-france-hover":
-          "var(--blue-france-925-125-hover)",
-        "--background-action-low-blue-france-active":
-          "var(--blue-france-925-125-active)",
+        "--background-action-low-blue-france-hover": "var(--blue-france-925-125-hover)",
+        "--background-action-low-blue-france-active": "var(--blue-france-925-125-active)",
         "--background-action-low-red-marianne": "var(--red-marianne-925-125)",
-        "--background-action-low-red-marianne-hover":
-          "var(--red-marianne-925-125-hover)",
-        "--background-action-low-red-marianne-active":
-          "var(--red-marianne-925-125-active)",
+        "--background-action-low-red-marianne-hover": "var(--red-marianne-925-125-hover)",
+        "--background-action-low-red-marianne-active": "var(--red-marianne-925-125-active)",
         "--background-active-blue-france": "var(--blue-france-sun-113-625)",
-        "--background-active-blue-france-hover":
-          "var(--blue-france-sun-113-625-hover)",
-        "--background-active-blue-france-active":
-          "var(--blue-france-sun-113-625-active)",
+        "--background-active-blue-france-hover": "var(--blue-france-sun-113-625-hover)",
+        "--background-active-blue-france-active": "var(--blue-france-sun-113-625-active)",
         "--background-active-red-marianne": "var(--red-marianne-425-625)",
-        "--background-active-red-marianne-hover":
-          "var(--red-marianne-425-625-hover)",
-        "--background-active-red-marianne-active":
-          "var(--red-marianne-425-625-active)",
+        "--background-active-red-marianne-hover": "var(--red-marianne-425-625-hover)",
+        "--background-active-red-marianne-active": "var(--red-marianne-425-625-active)",
         "--background-open-blue-france": "var(--blue-france-925-125)",
-        "--background-open-blue-france-hover":
-          "var(--blue-france-925-125-hover)",
-        "--background-open-blue-france-active":
-          "var(--blue-france-925-125-active)",
+        "--background-open-blue-france-hover": "var(--blue-france-925-125-hover)",
+        "--background-open-blue-france-active": "var(--blue-france-925-125-active)",
         "--background-open-red-marianne": "var(--red-marianne-925-125)",
-        "--background-open-red-marianne-hover":
-          "var(--red-marianne-925-125-hover)",
-        "--background-open-red-marianne-active":
-          "var(--red-marianne-925-125-active)",
+        "--background-open-red-marianne-hover": "var(--red-marianne-925-125-hover)",
+        "--background-open-red-marianne-active": "var(--red-marianne-925-125-active)",
         "--background-disabled-grey": "var(--grey-925-125)",
         "--background-overlay-grey": "var(--grey-50-1000-a375)",
         "--text-default-grey": "var(--grey-200-850)",
@@ -251,5 +224,5 @@ const styles = {
       },
     },
   },
-};
-export default styles;
+}
+export default styles

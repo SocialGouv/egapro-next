@@ -1,15 +1,11 @@
-import React, { FunctionComponent } from "react";
-import { ButtonGroup as ButtonGroupChakra } from "@chakra-ui/react";
+import React, { FunctionComponent } from "react"
+import { ButtonGroup as ButtonGroupChakra } from "@chakra-ui/react"
 
 type ButtonGroupProps = {
-  isAttached?: boolean;
-};
+  isAttached?: boolean
+}
 
-const ButtonGroup: FunctionComponent<ButtonGroupProps> = ({
-  children,
-  isAttached,
-  ...rest
-}) => {
+const ButtonGroup: FunctionComponent<ButtonGroupProps> = ({ children, isAttached, ...rest }) => {
   return (
     <ButtonGroupChakra
       isAttached={isAttached}
@@ -23,7 +19,7 @@ const ButtonGroup: FunctionComponent<ButtonGroupProps> = ({
     >
       {children}
     </ButtonGroupChakra>
-  );
-};
+  )
+}
 
-export default ButtonGroup;
+export default ButtonGroup

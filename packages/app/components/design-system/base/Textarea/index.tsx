@@ -1,13 +1,13 @@
-import React from "react";
-import { Textarea as TextareaChakra } from "@chakra-ui/react";
+import React from "react"
+import { Textarea as TextareaChakra } from "@chakra-ui/react"
 
 type TextareaChakraProps = {
-  isDisabled?: boolean;
-  isInvalid?: boolean;
-  isValid?: boolean;
-  isReadOnly?: boolean;
-  isRequired?: boolean;
-};
+  isDisabled?: boolean
+  isInvalid?: boolean
+  isValid?: boolean
+  isReadOnly?: boolean
+  isRequired?: boolean
+}
 
 const Textarea = ({ isInvalid, isValid, ...rest }: TextareaChakraProps) => {
   return (
@@ -27,7 +27,7 @@ const Textarea = ({ isInvalid, isValid, ...rest }: TextareaChakraProps) => {
       }}
       {...rest}
       sx={{
-				maxHeight: "2.5rem",
+        maxHeight: "2.5rem",
         borderTop: "none",
         borderLeft: "none",
         borderRight: "none",
@@ -53,7 +53,7 @@ const Textarea = ({ isInvalid, isValid, ...rest }: TextareaChakraProps) => {
         },
       }}
     />
-  );
-};
+  )
+}
 
-export default Textarea;
+export default Textarea
