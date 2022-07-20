@@ -24,21 +24,23 @@ const Input = ({
   ...rest
 }: InputChakraProps) => {
   return (
-    <InputGroup>
+    <InputGroup color="var(--text-label-grey)">
       {leftIcon && (
         <InputLeftElement pointerEvents="none" children={leftIcon} />
       )}
       <InputChakra
-        bg="var(--grey-950)"
+        bg="var(--background-contrast-grey)"
+        color="var(--text-label-grey)"
         borderRadius={"0.25rem 0.25rem 0 0"}
         _focus={{
           boxShadow: "none",
         }}
         _hover={{
-          borderBottomColor: "var(--grey-425)",
+          borderBottomColor: "var(--border-plain-grey)",
         }}
         _readOnly={{
-          borderBottomColor: "var(--grey-850)",
+          color: "var(--text-disabled-grey)",
+          borderBottomColor: "var(--border-disabled-grey)",
         }}
         {...rest}
         sx={{
@@ -46,18 +48,24 @@ const Input = ({
           borderLeft: "none",
           borderRight: "none",
           borderBottom: `0.125rem solid ${
-            (isInvalid && "var(--red-marianne-472)") ||
-            (isValid && "var(--success-525)") ||
-            "var(--grey-425)"
+            (isInvalid && "var(--border-plain-error)") ||
+            (isValid && "var(--border-plain-success)") ||
+            "var(--border-plain-grey)"
           }`,
           "&:focus-visible": {
-            "outline-color": "var(--blue-focus)",
+            "outline-color": "var(--outline-focus-blue)",
             "outline-offset": "0.125rem",
             "outline-width": "0.125rem",
           },
           "&:disabled": {
             opacity: 1,
-            borderBottomColor: "var(--grey-850)",
+            color: "var(--text-disabled-grey)",
+            borderBottomColor: "var(--border-disabled-grey)",
+          },
+          "&::placeholder": {
+            opacity: 1,
+            fontStyle: "italic",
+            color: "var(--text-mention-grey)",
           },
         }}
       />

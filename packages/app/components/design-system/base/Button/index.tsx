@@ -21,40 +21,53 @@ const Button = ({
   return (
     <ButtonChakra
       size={size}
-      bg={theme === "primary" ? "var(--blue-france-113)" : "transparent"}
+      bg={
+        theme === "primary"
+          ? "var(--background-action-high-blue-france)"
+          : "transparent"
+      }
       border={`1px solid ${
-        (theme === "secondary" && "var(--blue-france-113)") ||
-        (theme === "tertiary" && "var(--grey-925)") ||
+        (theme === "secondary" && "var(--text-action-high-blue-france)") ||
+        (theme === "tertiary" && "var(--grey-925-125)") ||
         "transparent"
       }`}
-      color={theme === "primary" ? "var(--white)" : "var(--blue-france-113)"}
+      color={
+        theme === "primary"
+          ? "var(--text-inverted-blue-france)"
+          : "var(--text-action-high-blue-france)"
+      }
       _focus={{
         boxShadow: "none",
       }}
       _hover={{
         bg:
           theme === "primary"
-            ? "var(--blue-france-113-hover)"
-            : "var(--grey-1000-hover)",
+            ? "var(--background-action-high-blue-france-hover)"
+            : "rgba(0, 0, 0, 0.05)",
       }}
       _active={{
         bg:
           theme === "primary"
-            ? "var(--blue-france-113-active)"
-            : "var(--grey-1000-active)",
+            ? "var(--background-action-high-blue-france-active)"
+            : "rgba(0, 0, 0, 0.1)",
       }}
       sx={{
         "&:focus-visible": {
-          "outline-color": "var(--blue-focus)",
+          "outline-color": "var(--outline-focus-blue)",
           "outline-offset": "0.125rem",
           "outline-width": "0.125rem",
         },
         "&:disabled": {
           opacity: 1,
-          bg: theme === "primary" ? "var(--grey-925)" : "transparent",
+          bg:
+            theme === "primary"
+              ? "var(--background-disabled-grey)"
+              : "transparent",
           borderColor:
-            theme === "secondary" ? "var(--grey-925)" : "transparent",
-          color: "var(--grey-850-active)",
+            theme === "secondary"
+              ? "var(--border-disabled-grey)"
+              : "transparent",
+          color: "var(--text-disabled-grey)",
         },
         ".chakra-button__icon svg": {
           width: size === "lg" ? 6 : 4,
