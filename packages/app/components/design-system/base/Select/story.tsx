@@ -8,6 +8,7 @@ export default {
   component: Select,
   args: {
     placeholder: "Placeholder",
+    "aria-label": "Select component exemple",
     children: (
       <>
         <option value="1">Option 1</option>

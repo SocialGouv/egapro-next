@@ -1,12 +1,14 @@
+import { StyleFunctionProps } from "@chakra-ui/theme-tools"
+
 const styles = {
   fonts: {
     heading: `'Marianne Bold', Arial, Helvetica, sans-serif`,
     body: `'Marianne', Arial, Helvetica, sans-serif`,
   },
   styles: {
-    global: {
+    global: (props: StyleFunctionProps) => ({
       body: {
-        backgroundColor: "var(--background-default-grey)",
+        backgroundColor: props.colorMode === "light" ? "grey.1000.main" : "grey.50.main",
         color: "var(--text-default-grey)",
       },
       ":root": {
@@ -222,7 +224,7 @@ const styles = {
         "--error-425-625-active": "#ff4140",
         "--error-975-75": "#fff4f4",
       },
-    },
+    }),
   },
 }
 export default styles

@@ -13,6 +13,6 @@ const theme = extendTheme({
   ...components,
 })
 
-console.log(theme.components.Input)
+console.log(theme.components.Button)
 
 export default theme
